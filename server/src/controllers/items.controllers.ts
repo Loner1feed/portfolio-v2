@@ -68,6 +68,9 @@ export const getItemsWithParamsController = async (req: Request, res: Response):
 
   try {
     const response = await getItemsWithParams(params);
+
+    // const response = items.data.map((el) => { })
+
     res.status(200).json(response);
   } catch (error) {
     errorHandler(error);

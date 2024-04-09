@@ -8,6 +8,7 @@ interface ButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   type?: 'primary' | 'outlined';
   className?: string;
+  icon?: React.ReactNode;
 }
 
 const defineClassNames = (type: ButtonProps['type']): string => {
@@ -31,6 +32,7 @@ export const Button: React.FC<ButtonProps> = ({
   onClick,
   type = 'primary',
   className,
+  icon,
 }) => {
   return (
     <button
@@ -38,6 +40,7 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
     >
       {label}
+      {icon}
     </button>
   );
 };
