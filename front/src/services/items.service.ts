@@ -6,10 +6,7 @@ export class ItemsService {
   }
 
   static getItem(id: string) {
-    return $api.get('/items', { params: id });
-  }
-
-  static sendItem(data: unknown) {
-    return $api.put('/items/66226aec71e79f9f420d2c47', data);
+    // console.log(id);
+    return $api.get(`/items/single?id=${id}`);
   }
 }

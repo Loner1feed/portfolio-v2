@@ -7,9 +7,7 @@ import { RombicButton } from 'components/common/rombic-button/rombic-button';
 import './header.style.scss';
 
 // icons
-import telegramIcon from 'assets/icons/telegram-icon.svg';
-import linkedinIcon from 'assets/icons/linkedin-icon.svg';
-import githubIcon from 'assets/icons/github-icon.svg';
+import { GithubIcon, LinkedinIcon, TelegramIcon } from 'components/icons';
 
 export const Header: React.FC = () => {
   return (
@@ -18,9 +16,9 @@ export const Header: React.FC = () => {
         <div className="header__inner">
           <Logo />
           <div className="header__socials">
-            <RombicButton iconComponent={<img src={telegramIcon} />} />
-            <RombicButton iconComponent={<img src={linkedinIcon} />} />
-            <RombicButton iconComponent={<img src={githubIcon} />} />
+            <RombicButton iconComponent={<TelegramIcon />} />
+            <RombicButton iconComponent={<LinkedinIcon />} />
+            <RombicButton iconComponent={<GithubIcon />} />
           </div>
         </div>
       </Container>

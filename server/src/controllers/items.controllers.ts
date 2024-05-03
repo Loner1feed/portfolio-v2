@@ -23,7 +23,7 @@ export const getItemByIdController = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const id = req?.params?.id;
+  const id = req?.query?.id as string;
 
   try {
     const item: Item = await getItemById(id);

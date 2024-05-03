@@ -5,10 +5,11 @@ import './button.style.scss';
 
 interface ButtonProps {
   label?: string;
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  onClick?: React.MouseEventHandler;
   type?: 'primary' | 'outlined';
   className?: string;
   icon?: React.ReactNode;
+  href?: string;
 }
 
 const defineClassNames = (type: ButtonProps['type']): string => {
@@ -33,8 +34,9 @@ export const Button: React.FC<ButtonProps> = ({
   type = 'primary',
   className,
   icon,
+  href,
 }) => {
-  return (
+  return !href ? (
     <button
       className={`${defineClassNames(type)} ${className}`}
       onClick={onClick}
@@ -42,5 +44,15 @@ export const Button: React.FC<ButtonProps> = ({
       {label}
       {icon}
     </button>
+  ) : (
+    <a
+      className={`${defineClassNames(type)} ${className}`}
+      href={href}
+      onClick={onClick}
+      target="_blank"
+    >
+      {label}
+      {icon}
+    </a>
   );
 };

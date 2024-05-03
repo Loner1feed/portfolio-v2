@@ -18,11 +18,11 @@ export const router = express.Router();
 
 router.use(express.json());
 
+// get item by id
+router.get("/single", getItemByIdController);
+
 // get all items
 router.get("/", getItemsController);
-
-// get item by id
-router.get("/:id/", getItemByIdController);
 
 // get items by params and page
 router.post("/", validateParams, getItemsWithParamsController);

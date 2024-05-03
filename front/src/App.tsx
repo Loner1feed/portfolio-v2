@@ -1,13 +1,14 @@
 import React from 'react';
 import { MainPage } from 'components/pages/main-page';
-import { TestImageUpload } from 'components/common/test-image-upoload/test-image-upload';
+import { ModalContextProvider } from 'context/modal.context';
+import ToastContainer from 'components/common/toast';
 
 const App: React.FC = () => {
   return (
-    <div>
+    <ModalContextProvider>
       <MainPage />
-      <TestImageUpload />
-    </div>
+      <ToastContainer />
+    </ModalContextProvider>
   );
 };
 
