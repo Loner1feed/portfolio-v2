@@ -9,8 +9,6 @@ import { Button } from '../button/button';
 import { RombicButton } from '../rombic-button/rombic-button';
 import { CloseIcon, OpenIcon } from 'components/icons';
 
-import image from '../../../assets/images/sample.png';
-
 //styles
 import './modal.style.scss';
 
@@ -53,13 +51,17 @@ export const Modal: React.FC<ModalProps> = ({ open, handleClose, data }) => {
           ref={backdropRef}
           onClick={handleClose}
         >
-          <div className="modal" ref={modalRef}>
+          <div
+            className="modal"
+            ref={modalRef}
+            onClick={e => e.stopPropagation()}
+          >
             <RombicButton
               iconComponent={<CloseIcon />}
               onClick={handleClose}
               className="modal__close"
             />
-            <ModalAnimatedImage imageUrl={image} />
+            {data?.imageUrl && <ModalAnimatedImage imageUrl={data?.imageUrl} />}
             <div className="modal__content">
               <h2>{data?.title}</h2>
               <ModalInfoBlock heading="stack">

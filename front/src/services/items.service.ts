@@ -1,4 +1,5 @@
-import { $api, PaginationParams } from './axios.service';
+import { PaginationParams } from 'utils/types/item.types';
+import { $api } from './axios.service';
 
 export class ItemsService {
   static getItemsByPage(params: PaginationParams) {

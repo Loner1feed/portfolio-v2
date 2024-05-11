@@ -14,7 +14,7 @@ export interface Item extends ShortItem {
 
 export interface ShortItem {
   title: string;
-  id?: ObjectId;
+  _id?: ObjectId;
   imageUrl?: string;
 }
 
@@ -25,7 +25,7 @@ export interface ImageData {
 
 export interface PaginationResponse {
   page: number;
-  totalPages: number;
+  totalCount: number;
   data: ShortItem[];
 }
 
@@ -106,13 +106,23 @@ export const getItemsWithParams = async (
 ): Promise<PaginationResponse> => {
   const { page, pageSize, paramName, paramValue } = params;
 
-  const aggregationPipeline = [
-    { $match: { [paramName]: paramValue } },
-    { $skip: page ? page * pageSize : 0 },
-    { $limit: pageSize },
-  ];
+  let aggregationPipeline;
 
-  const countQuery = { [paramName]: paramValue };
+  if (paramName && paramValue !== null) {
+    aggregationPipeline = [
+      { $match: { [paramName]: paramValue } },
+      { $skip: page ? page * pageSize : 0 },
+      { $limit: pageSize },
+    ];
+  } else {
+    aggregationPipeline = [
+      { $skip: page ? page * pageSize : 0 },
+      { $limit: pageSize },
+    ];
+  }
+
+  const countQuery =
+    paramName && paramValue !== null ? { [paramName]: paramValue } : {};
 
   const coll = db.collection<Item>(collection);
 
@@ -121,7 +131,7 @@ export const getItemsWithParams = async (
   const shortItems = items.map((el) => ({
     title: el.title,
     imageUrl: el.imageUrl,
-    id: el.id?.toString(),
+    id: el._id?.toString(),
   })) as ShortItem[];
 
   const count = await coll.countDocuments(countQuery);
@@ -129,7 +139,7 @@ export const getItemsWithParams = async (
   return {
     data: shortItems,
     page: page,
-    totalPages: Math.ceil(count / pageSize),
+    totalCount: count,
   };
 };
 

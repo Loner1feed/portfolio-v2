@@ -41,6 +41,17 @@ export const ItemCard: React.FC<ItemCardProps> = ({ title, imageUrl, id }) => {
       });
   };
 
+  const modifyImageUrl = (url: string) => {
+    const split = url.split('/');
+    const index = 7;
+
+    return [
+      ...split.slice(0, index - 1),
+      'ar_1:1,c_crop',
+      ...split.slice(index),
+    ].join('/');
+  };
+
   // fade-in component on image load
   const onLoad = () => {
     if (!itemRef.current) return;
@@ -56,7 +67,11 @@ export const ItemCard: React.FC<ItemCardProps> = ({ title, imageUrl, id }) => {
             loading ? 'itemCard__img itemCard__img--loading' : 'itemCard__img'
           }
         >
-          <LazyLoadImage alt={title} src={imageUrl} onLoad={onLoad} />
+          <LazyLoadImage
+            alt={title}
+            src={modifyImageUrl(imageUrl)}
+            onLoad={onLoad}
+          />
           <Spinner />
         </div>
         <span>{title}</span>

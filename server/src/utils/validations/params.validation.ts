@@ -1,11 +1,11 @@
-import Joi, { ValidationError, ValidationResult } from 'joi';
-import { NextFunction, Request, Response } from 'express';
+import Joi, { ValidationError, ValidationResult } from "joi";
+import { NextFunction, Request, Response } from "express";
 
 export const paramsSchema = Joi.object({
   page: Joi.number().required(),
   pageSize: Joi.number().required(),
-  paramName: Joi.string().required(),
-  paramValue: Joi.required()
+  paramName: Joi.string().allow(""),
+  paramValue: Joi.required(),
 });
 
 export const validateParams = (
@@ -13,8 +13,11 @@ export const validateParams = (
   res: Response,
   next: NextFunction
 ) => {
-  const result: ValidationResult = paramsSchema.validate(req.body, { abortEarly: true });
+  const result: ValidationResult = paramsSchema.validate(req.body, {
+    abortEarly: true,
+  });
 
-  if (result.error) res.status(400).json(result.error.details.map((err) => err.message));
+  if (result.error)
+    res.status(400).json(result.error.details.map((err) => err.message));
   else next();
-}
+};

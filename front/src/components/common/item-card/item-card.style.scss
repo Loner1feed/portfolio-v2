@@ -3,13 +3,18 @@
 .itemCard {
   opacity: 0;
   transition: $transition;
-  max-width: 400px;
+  max-width: 500px;
   font-family: 'Roboto';
   cursor: pointer;
+  pointer-events: none;
   position: relative;
+  visibility: hidden;
+
   &__loaded {
     transition: 0.3s;
     opacity: 1;
+    pointer-events: all;
+    visibility: visible;
   }
   &__img {
     width: 100%;
@@ -18,6 +23,7 @@
     margin-bottom: 10px;
     background: white;
     position: relative;
+    box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.1);
     img {
       object-fit: cover;
       width: 100%;
