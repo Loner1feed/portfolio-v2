@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -25,10 +25,73 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>React App</title>
+
+    <script>
+      document.onreadystatechange = function () {
+        console.log(document.readyState);
+        const loader = document.querySelector('#loader');
+        const root = document.querySelector('#root');
+        if (loader && document.readyState === 'complete') {
+          loader.classList.add('hidden');
+          root.style.opacity = '1';
+        }
+      };
+    </script>
+
+    <style>
+      #loader {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background: #fff;
+        transition: 0.3s;
+        visibility: visible;
+        opacity: 1;
+        display: grid;
+        place-items: center;
+      }
+
+      #loader.hidden {
+        visibility: hidden;
+        opacity: 0;
+      }
+
+      .spinner {
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        transition: 0.3s;
+        color: #000fff;
+      }
+
+      .spinner::after {
+        content: ' ';
+        display: block;
+        width: 64px;
+        height: 64px;
+        margin: 8px;
+        border-radius: 50%;
+        border: 6.4px solid currentColor;
+        border-color: currentColor transparent currentColor transparent;
+        animation: lds-dual-ring 1.7s linear infinite;
+      }
+
+      @keyframes lds-dual-ring {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root" style="opacity: 0"></div>
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -40,4 +103,7 @@
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
+  <div id="loader">
+    <div class="spinner"></div>
+  </div>
 </html>

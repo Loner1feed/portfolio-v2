@@ -12,6 +12,7 @@ interface PaginationProps {
   currentPage: number;
   pageSize?: number;
   className?: string;
+  disabled?: boolean;
 }
 
 export const Pagination: React.FC<PaginationProps> = ({
@@ -21,6 +22,7 @@ export const Pagination: React.FC<PaginationProps> = ({
   currentPage,
   pageSize = 4,
   className = '',
+  disabled,
 }) => {
   const paginationRange = usePagination({
     currentPage,
@@ -40,7 +42,13 @@ export const Pagination: React.FC<PaginationProps> = ({
   const lastPage = paginationRange[paginationRange.length - 1];
 
   return (
-    <ul className={'pagination ' + className}>
+    <ul
+      className={
+        disabled
+          ? 'pagination pagination--disabled ' + className
+          : 'pagination ' + className
+      }
+    >
       {/* Left navigation arrow */}
       <li
         className={

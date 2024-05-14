@@ -1,7 +1,6 @@
 @import '../../..//assets/styles/vars.scss';
 
 .btn {
-  padding: 15px;
   min-width: 150px;
   text-align: center;
   font-size: 16px;
@@ -26,6 +25,12 @@
     transform: translateY(-5px);
   }
 
+  @media (max-width: 720px) {
+    &:hover {
+      transform: none;
+    }
+  }
+
   &--primary {
     background: $primary;
     color: #fff;
@@ -40,5 +45,13 @@
     background: rgba(#fff, 0.7);
     backdrop-filter: blur(10px);
     color: $primary;
+  }
+
+  &--normal {
+    padding: 15px;
+  }
+
+  &--small {
+    padding: 5px;
   }
 }

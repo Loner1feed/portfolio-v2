@@ -13,11 +13,17 @@ interface TabsProps {
   data: SingleTab[];
   onChange: (tab: SingleTab) => void;
   activeValue: string | number | boolean;
+  disabled?: boolean;
 }
 
-export const Tabs: React.FC<TabsProps> = ({ data, onChange, activeValue }) => {
+export const Tabs: React.FC<TabsProps> = ({
+  data,
+  onChange,
+  activeValue,
+  disabled,
+}) => {
   return (
-    <div className="tabs">
+    <div className={disabled ? 'tabs tabs--disabled' : 'tabs'}>
       {data &&
         data.map(tab => (
           <Button
@@ -29,6 +35,7 @@ export const Tabs: React.FC<TabsProps> = ({ data, onChange, activeValue }) => {
                 ? 'tabs__tab tabs__tab--active'
                 : 'tabs__tab'
             }
+            size="small"
           />
         ))}
     </div>

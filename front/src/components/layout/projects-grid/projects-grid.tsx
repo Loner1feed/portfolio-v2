@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { ShortItem } from 'utils/types/item.types';
 import { ItemCard } from '../../common/item-card/item-card';
 
@@ -8,19 +8,18 @@ import './projects-grid.style.scss';
 export const ProjectsGrid: React.FC<{
   data: ShortItem[];
 }> = ({ data }) => {
-  const gridRef = useRef(null);
-
   const isEven = !(data.length % 2);
 
+  const defineClasses = () => {
+    let className = 'projectsGrid ';
+
+    if (isEven && !!data.length) className += 'projectsGrid--padding ';
+
+    return className;
+  };
+
   return (
-    <div
-      className={
-        isEven && !!data.length
-          ? 'projectsGrid projectsGrid--padding'
-          : 'projectsGrid'
-      }
-      ref={gridRef}
-    >
+    <div className={defineClasses()}>
       {data &&
         data.map(el => (
           <ItemCard

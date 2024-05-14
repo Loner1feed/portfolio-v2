@@ -1,0 +1,87 @@
+@import '../../../assets/styles/vars.scss';
+
+.profileImage {
+  position: relative;
+  transform: translateX(-15px);
+  transition: 0.5s;
+  opacity: 0;
+  &.loaded {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+  &__quote {
+    width: 415px;
+    padding: 20px 35px;
+    background: rgba(#ffffff, 0.8);
+    backdrop-filter: blur(10px);
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    border: 1px solid #fff;
+    font-size: 24px;
+
+    @media (max-width: 960px) {
+      font-size: 18px;
+      padding: 15px 20px;
+      max-width: 300px;
+    }
+  }
+
+  &__img {
+    position: relative;
+    width: 480px;
+    height: 640px;
+    margin-left: 40px;
+    margin-bottom: 35px;
+    box-shadow: -30px 30px 30px 10px rgba(0, 0, 0, 0.3);
+
+    span {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      overflow: hidden;
+      transition: $transition;
+      opacity: 0;
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+
+      &.lazy-load-image-loaded {
+        opacity: 1;
+      }
+    }
+  }
+
+  @media (max-width: 960px) {
+    &__img {
+      width: 360px;
+      height: 550px;
+      margin-left: 20px;
+      margin-bottom: 15px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    width: 100%;
+    max-width: 500px;
+
+    &__img {
+      margin: 0;
+      margin-bottom: 20px;
+      width: 100%;
+    }
+    &__quote {
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (max-width: 480px) {
+    &__img {
+      height: 400px;
+    }
+  }
+}

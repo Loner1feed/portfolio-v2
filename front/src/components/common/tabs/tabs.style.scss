@@ -4,6 +4,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: $transition;
   &__tab {
     &:first-child {
       margin-right: 15px;
@@ -15,6 +16,25 @@
       border-color: $primary-hover;
       box-shadow: 0px 5px 10px 0px rgba($primary, 0.2);
       transform: translateY(-5px);
+    }
+  }
+
+  &--disabled {
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  @media (max-width: 720px) {
+    flex-direction: column;
+    &__tab {
+      &:first-child {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+
+      &--active {
+        transform: none;
+      }
     }
   }
 }

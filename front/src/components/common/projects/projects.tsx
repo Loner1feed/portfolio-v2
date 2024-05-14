@@ -5,6 +5,11 @@ import React, { useEffect, useState } from 'react';
 import { ItemsService } from 'services/items.service';
 import { PaginationParams, PaginationResponse } from 'utils/types/item.types';
 import { SingleTab, Tabs } from 'components/common/tabs/tabs';
+import { Container } from '../container/container';
+import { Title } from '../title/title';
+
+//styles
+import './projects.style.scss';
 
 const tabsData = [
   {
@@ -32,13 +37,15 @@ export const Projects: React.FC = () => {
     totalCount: 0,
   });
 
+  const [loading, setLoading] = useState(false);
+
   const onTabsChange = (tab: SingleTab) => {
     setParams({ ...params, paramValue: tab.value, page: 0 });
   };
 
   // fetch data
   useEffect(() => {
-    console.log(params);
+    setLoading(true);
     ItemsService.getItemsByPage(params)
       .then(res => {
         if (res.data) {
@@ -48,20 +55,34 @@ export const Projects: React.FC = () => {
       .catch(e => {
         console.log(e);
         toast.error('Failed to get the portfolio items');
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, [params]);
 
   return (
-    <div>
-      <Tabs data={tabsData} onChange={onTabsChange} activeValue={params.paramValue} />
-      <Pagination
-        onPageChange={pageNumber =>
-          setParams({ ...params, page: pageNumber - 1 })
-        }
-        currentPage={params.page + 1}
-        totalCount={response.totalCount}
-      />
-      <ProjectsGrid data={response.data} />
+    <div className="projects" id="scrollTo">
+      <Container>
+        <Title label="My Projects" className="projects__title" />
+        <Tabs
+          data={tabsData}
+          onChange={onTabsChange}
+          activeValue={params.paramValue}
+          disabled={loading}
+        />
+        {!!response.data.length && (
+          <Pagination
+            onPageChange={pageNumber =>
+              setParams({ ...params, page: pageNumber - 1 })
+            }
+            currentPage={params.page + 1}
+            totalCount={response.totalCount}
+            disabled={loading}
+          />
+        )}
+        <ProjectsGrid data={response.data} />
+      </Container>
     </div>
   );
 };

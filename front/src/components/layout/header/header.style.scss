@@ -1,3 +1,5 @@
+@import '../../../assets/styles/vars.scss';
+
 .header {
   &__inner {
     display: flex;
@@ -17,6 +19,15 @@
     grid-gap: 30px;
     @media (max-width: 720px) {
       grid-gap: 10px;
+      .rombBtn {
+        &::before {
+          background: #fff;
+        }
+
+        svg path {
+          fill: $primary;
+        }
+      }
     }
   }
 }

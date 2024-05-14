@@ -12,7 +12,7 @@ import { GithubIcon, LinkedinIcon, TelegramIcon } from 'components/icons';
 export const Header: React.FC = () => {
   return (
     <header className="header">
-      <Container>
+      <Container noPadding>
         <div className="header__inner">
           <Logo />
           <div className="header__socials">
