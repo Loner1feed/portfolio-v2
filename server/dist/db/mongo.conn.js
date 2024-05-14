@@ -6,6 +6,7 @@ const errorHandler_1 = require("../utils/helpers/errorHandler");
 const uri = process.env.ATLAS_URI || "";
 const dbName = process.env.DB_NAME || "";
 // const collName: string = process.env.ITEMS_COLLECTION || "";
+console.log(process.env.ATLAS_URI);
 const client = new mongodb_1.MongoClient(uri);
 client
     .connect()
