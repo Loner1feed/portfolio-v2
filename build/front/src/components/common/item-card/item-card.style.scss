@@ -1,0 +1,84 @@
+@import '../../../assets/styles/vars.scss';
+
+.itemCard {
+  opacity: 0;
+  transition: $transition;
+  max-width: 500px;
+  font-family: 'Roboto';
+  cursor: pointer;
+  pointer-events: none;
+  position: relative;
+  visibility: hidden;
+
+  &__loaded {
+    transition: 0.3s;
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+  }
+  &__img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    margin-bottom: 10px;
+    background: white;
+    position: relative;
+    box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.1);
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      transition: $transition;
+    }
+
+    .spinner {
+      opacity: 0;
+      visibility: hidden;
+      transition: $transition;
+      position: absolute;
+      top: 50%;
+      right: 50%;
+      transform: translate(50%, -50%);
+      color: $primary;
+    }
+
+    &--loading {
+      img {
+        opacity: 0.5;
+      }
+
+      .spinner {
+        opacity: 0.7;
+        visibility: visible;
+      }
+    }
+  }
+  &__content {
+    position: relative;
+    transition: $transition;
+    z-index: 2;
+    span {
+      font-weight: 500;
+      font-size: 16px;
+      letter-spacing: 0.5px;
+    }
+  }
+  &__backdrop {
+    transition: $transition;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: $primary;
+    z-index: 0;
+  }
+
+  &:hover &__content {
+    transform: translateX(23px);
+    color: #fff;
+  }
+  &:hover &__backdrop {
+    transform: translate(-23px, 46px);
+  }
+}
