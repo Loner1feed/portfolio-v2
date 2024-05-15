@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/static/css/main.4480d173.css",
+    "main.js": "/static/js/main.2ea30d3b.js",
+    "static/js/453.80efc53e.chunk.js": "/static/js/453.80efc53e.chunk.js",
+    "static/media/Roboto-Medium.ttf": "/static/media/Roboto-Medium.7c8d04cd831df3033c8a.ttf",
+    "static/media/Roboto-Thin.ttf": "/static/media/Roboto-Thin.a732a12eb07742232407.ttf",
+    "static/media/Roboto-Regular.ttf": "/static/media/Roboto-Regular.fc2b5060f7accec5cf74.ttf",
+    "static/media/Roboto-Black.ttf": "/static/media/Roboto-Black.cf56c1b149d0a5e8d7c6.ttf",
+    "static/media/Roboto-Bold.ttf": "/static/media/Roboto-Bold.f80816a5455d171f948d.ttf",
+    "static/media/github-icon.svg": "/static/media/github-icon.965119fc76d6b31928ea2847154c5793.svg",
+    "static/media/linkedin-icon.svg": "/static/media/linkedin-icon.8a60004dca750fadb35c15db5ffe3345.svg",
+    "index.html": "/index.html",
+    "static/media/telegram-icon.svg": "/static/media/telegram-icon.5ff99923f497c9c6e5c5e8dce50b75eb.svg",
+    "main.4480d173.css.map": "/static/css/main.4480d173.css.map",
+    "main.2ea30d3b.js.map": "/static/js/main.2ea30d3b.js.map",
+    "453.80efc53e.chunk.js.map": "/static/js/453.80efc53e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4480d173.css",
+    "static/js/main.2ea30d3b.js"
+  ]
+}
