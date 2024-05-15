@@ -14,5 +14,5 @@ jobs:
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "portfolio-v2-02588722-7584-4e1" #Must be unique in Heroku
-          heroku_email: "lfeedwork05@gmail.com",
+          heroku_email: "lfeedwork05@gmail.com"
           appdir: "server"
