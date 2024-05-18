@@ -6,8 +6,6 @@ const uri: string = process.env.ATLAS_URI || "";
 const dbName: string = process.env.DB_NAME || "";
 // const collName: string = process.env.ITEMS_COLLECTION || "";
 
-console.log("*****new version works***");
-
 const client = new MongoClient(uri);
 
 client
