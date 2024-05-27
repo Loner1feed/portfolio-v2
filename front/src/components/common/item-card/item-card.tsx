@@ -1,12 +1,15 @@
 import React, { useRef, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-// styles
-import './item-card.style.scss';
+
 import { useModal } from 'utils/hooks/use-modal';
 import { Spinner } from 'components/ui/spinner/spinner';
 import { ItemsService } from 'services/items.service';
 import { Item } from 'utils/types/item.types';
 import { toast } from '../toast';
+import placeholderImage from '../../../assets/images/placeholder-square.jpg';
+
+// styles
+import './item-card.style.scss';
 
 interface ItemCardProps {
   title: string;
@@ -69,7 +72,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({ title, imageUrl, id }) => {
         >
           <LazyLoadImage
             alt={title}
-            src={modifyImageUrl(imageUrl)}
+            src={imageUrl ? modifyImageUrl(imageUrl) : placeholderImage}
             onLoad={onLoad}
           />
           <Spinner />

@@ -5,7 +5,7 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(calc(-100% + 631px));
+    transform: translateY(calc(-100% + 630px));
   }
   100% {
     transform: translateY(0);
@@ -17,7 +17,7 @@
     transform: translateY(0);
   }
   50% {
-    transform: translateY(calc(-100% + 331px));
+    transform: translateY(calc(-100% + 330px));
   }
   100% {
     transform: translateY(0);
@@ -27,11 +27,11 @@
 .modal {
   display: flex;
   background: rgba(#f1f2f4, 0.7);
-  // backdrop-filter: blur(10px);
+
   transform: scale(0.95);
   max-width: 1140px;
   width: 100%;
-  border: 1px solid $bg-light;
+  // border: 1px solid $bg-light;
   border-radius: 20px;
   overflow: hidden;
   transform-origin: center center;
@@ -63,6 +63,7 @@
     background: rgba(0, 0, 0, 0.5);
     opacity: 0;
     transition: 0.3s;
+    backdrop-filter: blur(10px);
 
     position: fixed;
     top: 0;
@@ -97,8 +98,29 @@
     transition: $transition;
     position: relative;
 
-    img {
-      width: 100%;
+    &--placeholder {
+      background: rgba(#f5f5f5, 0.4);
+    }
+
+    &--width {
+      img {
+        width: 100%;
+      }
+
+      span.lazy-load-image-loaded {
+        img {
+          animation-name: imageScroll631;
+          animation-duration: 60s;
+          animation-timing-function: ease-in-out;
+          animation-iteration-count: infinite;
+        }
+      }
+    }
+
+    &--height {
+      img {
+        height: 100%;
+      }
     }
 
     .spinner {
@@ -113,18 +135,16 @@
 
     span {
       display: none;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
       &.opacity {
         transition: $transition;
         opacity: 0;
       }
       &.lazy-load-image-loaded {
         opacity: 1;
-        img {
-          animation-name: imageScroll631;
-          animation-duration: 60s;
-          animation-timing-function: ease-in-out;
-          animation-iteration-count: infinite;
-        }
+
         & + .spinner {
           opacity: 0;
           visibility: hidden;
@@ -148,9 +168,21 @@
     padding-top: 30px;
     padding-bottom: 70px;
     width: 100%;
-
+    border: 1px solid $bg-light;
     display: flex;
     flex-direction: column;
+
+    position: relative;
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: -10;
+    }
     h2 {
       font-size: 40px;
       font-weight: 500;
@@ -191,13 +223,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0px 10px;
+    padding: 4px 10px;
     border-radius: 20px;
     border: 1px solid $primary;
     color: $primary;
-    font-size: 14px;
+    font-size: 16px;
     background: #e6e7ff;
-    height: 26px;
+    // height: 26px;
   }
 
   &__paneGrid {
@@ -225,8 +257,13 @@
     &__image {
       max-width: 100%;
       height: 330px;
-      span.lazy-load-image-loaded img {
-        animation-name: imageScroll331;
+
+      &--width {
+        span.lazy-load-image-loaded {
+          img {
+            animation-name: imageScroll331;
+          }
+        }
       }
     }
   }

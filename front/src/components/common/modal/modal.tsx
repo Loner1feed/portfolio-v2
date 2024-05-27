@@ -32,11 +32,6 @@ export const Modal: React.FC<ModalProps> = ({ open, handleClose, data }) => {
     };
   }, [handleClose]);
 
-  // Logging...
-  useEffect(() => {
-    if (open) console.log(data);
-  }, [open]);
-
   return (
     <ReactPortal wrapperId="portal-modal-wrapper">
       <CSSTransition
@@ -61,7 +56,11 @@ export const Modal: React.FC<ModalProps> = ({ open, handleClose, data }) => {
               onClick={handleClose}
               className="modal__close"
             />
-            {data?.imageUrl && <ModalAnimatedImage imageUrl={data?.imageUrl} />}
+            {data?.imageUrl ? (
+              <ModalAnimatedImage imageUrl={data?.imageUrl} />
+            ) : (
+              <div className="modal__image modal__image--placeholder" />
+            )}
             <div className="modal__content">
               <h2>{data?.title}</h2>
               <ModalInfoBlock heading="stack">
