@@ -51,12 +51,11 @@ jobs:
         run: npm run build
 
       - name: Push admin build folder to a deploy repository
-        uses: nkoppel/push-files-to-another-repository@v1.1.3
+        uses: datalbry/copy_folder_to_another_repo_action@1.0.0
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-files: "front_admin/build"
-          destination-username: "Loner1feed"
-          destination-repository: "portfolio-v2-admin-deploy"
-          destination-directory: "/"
-          commit-email: "lfeedwork05@gmail.com"
+          source_folder: "front_admin"
+          user_name: "Loner1feed"
+          destination_repo: "portfolio-v2-admin-deploy"
+          user_email: "lfeedwork05@gmail.com"
