@@ -5,8 +5,6 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 export const IndexLayout = () => {
   const { pathname } = useLocation();
 
-  console.log(pathname);
-
   return (
     <div className="indexLayout">
       {/* Пока что по дефолту кидаю на /main */}

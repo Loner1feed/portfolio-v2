@@ -1,6 +1,6 @@
 {
   "name": "front_admin",
-  "homepage": "http://loner1feed.github.io/portfolio-v2-admin-deploy/build",
+  "homepage": "http://loner1feed.github.io/portfolio-v2-admin-deploy",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
