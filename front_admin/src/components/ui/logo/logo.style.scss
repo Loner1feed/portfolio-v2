@@ -1,0 +1,12 @@
+.logo {
+  height: 80px;
+  overflow: hidden;
+  object-fit: cover;
+  margin: 10px;
+  border-radius: 5px;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
