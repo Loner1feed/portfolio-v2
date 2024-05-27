@@ -194,6 +194,7 @@
   &__buttons {
     display: flex;
     margin-top: auto;
+    padding-top: 20px;
     .btn:first-child {
       margin-right: 15px;
     }
@@ -216,6 +217,10 @@
     max-width: 370px;
     p {
       min-height: 100px;
+      padding-bottom: 20px;
+      padding-top: 10px;
+      max-height: 190px;
+      padding-right: 5px;
     }
   }
 
@@ -289,12 +294,6 @@
 
     &__heading {
       margin-bottom: 10px;
-    }
-
-    &__block {
-      p {
-        min-height: 70px;
-      }
     }
 
     &__buttons {

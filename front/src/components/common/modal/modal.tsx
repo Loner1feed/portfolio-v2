@@ -11,6 +11,7 @@ import { CloseIcon, OpenIcon } from 'components/icons';
 
 //styles
 import './modal.style.scss';
+import { CustomScroll } from 'react-custom-scroll';
 
 interface ModalProps {
   open: boolean;
@@ -67,16 +68,22 @@ export const Modal: React.FC<ModalProps> = ({ open, handleClose, data }) => {
                 <ModalPaneGrid labels={data?.stack} />
               </ModalInfoBlock>
               <ModalInfoBlock heading="description">
-                <p>{data?.description}</p>
+                <CustomScroll>
+                  <p>{data?.description}</p>
+                </CustomScroll>
               </ModalInfoBlock>
 
               <div className="modal__buttons">
-                <Button
-                  label="open"
-                  icon={<OpenIcon />}
-                  href={data?.websiteUrl}
-                />
-                <Button label="view repository" href={data?.repoUrl} />
+                {!!data?.websiteUrl && (
+                  <Button
+                    label="open"
+                    icon={<OpenIcon />}
+                    href={data?.websiteUrl}
+                  />
+                )}
+                {!!data?.repoUrl && (
+                  <Button label="view repository" href={data?.repoUrl} />
+                )}
               </div>
             </div>
           </div>

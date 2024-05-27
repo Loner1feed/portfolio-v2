@@ -25,8 +25,12 @@ export const MainBanner: React.FC = () => {
           <div className="mainBanner__content">
             <Title label="Hello" tag="h1" />
             <p>
-              My name is <b>Yevhenii</b>, I'm a Front-end developer. Ready to
-              make your project better and more interesting.
+              My name is <b>Yevhenii</b>, i am Frontend developer. <br />
+              From sleek, responsive designs to robust, scalable applications, I
+              bring creativity and technical expertise <b>
+                to every project
+              </b>. <br />
+              Explore my work and see how I can bring your vision to life!
             </p>
             <div className="mainBanner__buttons">
               <ScrollButton label="Learn More" />

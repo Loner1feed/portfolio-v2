@@ -8,8 +8,7 @@ export const getModalImageRatio = (
     Math.round((ref.clientHeight / ref.clientWidth) * 100) / 100;
 
   const imageHeightRatio =
-    Math.round(((image.clientHeight + 10) / (image.clientWidth + 10)) * 100) /
-    100;
+    Math.round((image.clientHeight / image.clientWidth) * 100) / 100;
 
   return { clientHeightRatio, imageHeightRatio };
 };

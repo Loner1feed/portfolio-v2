@@ -17,11 +17,10 @@ export const ProfileImage = () => {
     <div className="profileImage" ref={profileImageRef}>
       <div className="profileImage__img">
         <LazyLoadImage
-          src="https://res.cloudinary.com/dacid8lii/image/upload/v1714836717/cld-sample.jpg"
+          src="https://res.cloudinary.com/dacid8lii/image/upload/v1716819504/eqhuy5c9ab435f8jsc0g.jpg"
           effect="opacity"
           onLoad={onLoad}
         />
-        6
       </div>
       <div className="profileImage__quote">
         <Marquee>Open for work! Open for work! </Marquee>
