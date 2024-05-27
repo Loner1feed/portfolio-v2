@@ -58,5 +58,5 @@ jobs:
           source-files: "build/"
           destination-username: "Loner1feed"
           destination-repository: "portfolio-v2-admin-deploy"
-          # destination-directory: 'projects/my-project'
+          destination-directory: "/"
           commit-email: "lfeedwork05@gmail.com"
