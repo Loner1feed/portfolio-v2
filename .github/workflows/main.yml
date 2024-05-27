@@ -59,4 +59,4 @@ jobs:
           user_name: "Loner1feed"
           destination_repo: "Loner1feed/portfolio-v2-admin-deploy"
           user_email: "lfeedwork05@gmail.com"
-          destination_folder: /
+          destination_folder: build
