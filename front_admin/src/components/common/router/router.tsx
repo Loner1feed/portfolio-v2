@@ -12,7 +12,7 @@ import contactsRoute from "../../../views/contacts";
 
 const router = createHashRouter([
   {
-    path: "/",
+    path: "build",
     element: <IndexLayout />,
     children: [
       {
