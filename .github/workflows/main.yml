@@ -32,7 +32,9 @@ jobs:
 
   build_admin:
     runs-on: ubuntu-latest
-    working-directory: ./front_admin
+    defaults:
+      run:
+        working-directory: ./front_admin
 
     steps:
       - uses: actions/checkout@v2
@@ -53,7 +55,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-files: "./build"
+          source-files: "front_admin/build"
           destination-username: "Loner1feed"
           destination-repository: "portfolio-v2-admin-deploy"
           destination-directory: "/"
