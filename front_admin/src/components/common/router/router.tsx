@@ -2,7 +2,7 @@ import React from "react";
 import { IndexLayout } from "../../../layouts/index-layout";
 import { MainLayout } from "../../../layouts/main-layout";
 import itemsRoutes from "../../../views/items";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { RouterProvider, createHashRouter } from "react-router-dom";
 import blankRoute from "../../../views/blank";
 import mainImageRoute from "../../../views/main-image";
 import socialsRoute from "../../../views/socials";
@@ -10,7 +10,7 @@ import contactsRoute from "../../../views/contacts";
 
 // TODO: сделать lazy load компонентов из роутов
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <IndexLayout />,
