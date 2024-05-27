@@ -1,7 +1,8 @@
 export const ModalPaneGrid: React.FC<{ labels?: string[] }> = ({ labels }) => {
   return (
     <div className="modal__paneGrid">
-      {labels && labels.map(label => <ModalPane>{label}</ModalPane>)}
+      {labels &&
+        labels.map(label => <ModalPane key={label}>{label}</ModalPane>)}
     </div>
   );
 };
