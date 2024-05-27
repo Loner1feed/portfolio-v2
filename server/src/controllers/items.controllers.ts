@@ -56,7 +56,7 @@ export const createItemController = async (
   req: Request,
   res: Response
 ): Promise<void> => {
-  const data: Item = req.body;
+  const data: any = req.body;
   const image = req.file as Express.Multer.File;
 
   try {
@@ -65,7 +65,7 @@ export const createItemController = async (
     if (response.acknowledged) res.status(200).send(response.insertedId);
     else res.status(500).send("Unable to create an item");
   } catch (error) {
-    res.status(500);
+    res.status(500).send("Server error!");
     errorHandler(error);
   }
 };
@@ -102,6 +102,24 @@ export const getItemsWithParamsController = async (
 
   try {
     const response = await getItemsWithParams(params);
+
+    // const response = items.data.map((el) => { })
+
+    res.status(200).json(response);
+  } catch (error) {
+    errorHandler(error);
+    res.status(500);
+  }
+};
+
+export const getFullItemsWithParamsController = async (
+  req: Request,
+  res: Response
+): Promise<void> => {
+  const params: Params = req.body;
+
+  try {
+    const response = await getItemsWithParams(params, true);
 
     // const response = items.data.map((el) => { })
 

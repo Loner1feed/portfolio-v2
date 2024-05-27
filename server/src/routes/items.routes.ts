@@ -2,6 +2,7 @@ import express from "express";
 import {
   createItemController,
   deleteItemByIdController,
+  getFullItemsWithParamsController,
   getItemByIdController,
   getItemsController,
   getItemsWithParamsController,
@@ -26,6 +27,9 @@ router.get("/", getItemsController);
 
 // get items by params and page
 router.post("/", validateParams, getItemsWithParamsController);
+
+// get items by params and page (for admin)
+router.post("/full", validateParams, getFullItemsWithParamsController);
 
 // delete item by id
 router.delete("/:id/", checkAuth, deleteItemByIdController);

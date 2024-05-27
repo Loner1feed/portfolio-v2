@@ -2,7 +2,9 @@ import { InsertOneResult, ObjectId, UpdateResult } from "mongodb";
 import db from "../db/mongo.conn";
 import { uploadImage } from "./images.models";
 import { getImageForUpload } from "../utils/helpers/getImageForUpload";
+import { ITEMS_COLLECTION } from "../utils/constants/mongo-coll.constants";
 
+// INTERFACES
 export interface Item extends ShortItem {
   description: string;
   websiteUrl: string;
@@ -35,29 +37,33 @@ export interface Params {
   paramName: string;
   paramValue: string | number | boolean;
 }
+// INTERFACES END
 
-const collection = "items";
-
+// MODELS
 export const getItems = async (): Promise<Item[]> => {
-  return await db.collection<Item>(collection).find({}).toArray();
+  return await db.collection<Item>(ITEMS_COLLECTION).find({}).toArray();
 };
 
 export const getItemById = async (id: string): Promise<Item> => {
   const query = { _id: new ObjectId(id) };
-  return (await db.collection<Item>(collection).findOne(query)) as Item;
+  return (await db.collection<Item>(ITEMS_COLLECTION).findOne(query)) as Item;
 };
 
 export const deleteItemById = async (id: string): Promise<boolean> => {
   const query = { _id: new ObjectId(id) };
-  const deleted = await db.collection<Item>(collection).deleteOne(query);
+  const deleted = await db.collection<Item>(ITEMS_COLLECTION).deleteOne(query);
   return deleted.acknowledged;
 };
 
 export const createItem = async (
-  data: Item,
+  data: any,
   image: Express.Multer.File
 ): Promise<InsertOneResult> => {
-  const newData = data;
+  // parse data from a form-data
+  const newData = Object.keys(data).reduce(
+    (acc, el) => ({ ...acc, [el]: JSON.parse(data[el]) }),
+    {}
+  ) as Item;
 
   // get image data in BASE64 format
   const imageData = getImageForUpload(image);
@@ -70,7 +76,7 @@ export const createItem = async (
       newData.imagePublicId = imagePublicId;
     }
   }
-  const result = await db.collection<Item>(collection).insertOne(newData);
+  const result = await db.collection<Item>(ITEMS_COLLECTION).insertOne(newData);
 
   return result;
 };
@@ -95,14 +101,15 @@ export const updateItem = async (
 
   // update item with data provided
   const result = await db
-    .collection<Item>(collection)
+    .collection<Item>(ITEMS_COLLECTION)
     .updateOne(query, { $set: data });
 
   return result;
 };
 
 export const getItemsWithParams = async (
-  params: Params
+  params: Params,
+  fullData: boolean = false
 ): Promise<PaginationResponse> => {
   const { page, pageSize, paramName, paramValue } = params;
 
@@ -124,23 +131,24 @@ export const getItemsWithParams = async (
   const countQuery =
     paramName && paramValue !== null ? { [paramName]: paramValue } : {};
 
-  const coll = db.collection<Item>(collection);
+  const coll = db.collection<Item>(ITEMS_COLLECTION);
 
   const items = (await coll.aggregate(aggregationPipeline).toArray()) as Item[];
 
-  const shortItems = items.map((el) => ({
-    title: el.title,
-    imageUrl: el.imageUrl,
-    id: el._id?.toString(),
-  })) as ShortItem[];
+  const finalizedItems = !fullData
+    ? (items.map((el) => ({
+        title: el.title,
+        imageUrl: el.imageUrl,
+        id: el._id?.toString(),
+      })) as ShortItem[])
+    : items;
 
   const count = await coll.countDocuments(countQuery);
 
   return {
-    data: shortItems,
+    data: finalizedItems,
     page: page,
     totalCount: count,
   };
 };
-
-//TODO:
+// MODELS END
