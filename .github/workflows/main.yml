@@ -55,7 +55,7 @@ jobs:
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
         with:
-          source-files: "front_admin/build"
+          source-files: "./build"
           destination-username: "Loner1feed"
           destination-repository: "portfolio-v2-admin-deploy"
           destination-directory: "/"
