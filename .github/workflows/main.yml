@@ -32,6 +32,7 @@ jobs:
 
   build_admin:
     runs-on: ubuntu-latest
+    working-directory: ./front_admin
 
     steps:
       - uses: actions/checkout@v2
@@ -42,15 +43,12 @@ jobs:
           node-version: "20.x"
 
       - name: Install dependencies
-        working-directory: ./front_admin
         run: npm install
 
       - name: Build front_admin
-        working-directory: ./front_admin
         run: npm run build
 
       - name: Push admin build folder to a deploy repository
-        working-directory: ./front_admin
         uses: nkoppel/push-files-to-another-repository@v1.1.3
         env:
           API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
