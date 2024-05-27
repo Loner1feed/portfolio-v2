@@ -6,13 +6,58 @@ on:
       - master
 
 jobs:
-  build:
+  # build_server:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: akhileshns/heroku-deploy@v3.13.15 # This is the action
+  #       with:
+  #         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+  #         heroku_app_name: "portfolio-v2-02588722-7584-4e1" #Must be unique in Heroku
+  #         heroku_email: "lfeedwork05@gmail.com"
+  #         appdir: "server"
+
+      # - name: Build front and front_admin
+
+
+      # - name: Push admin page to deploy repository
+      #   uses: nkoppel/push-files-to-another-repository@v1.1.3
+      #   env:
+      #     API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+      #   with:
+      #     source-files: 'webpage/'
+      #     destination-username: 'Loner1feed'
+      #     destination-repository: 'https://github.com/Loner1feed/portfolio-v2-admin-deploy.git'
+      #     # destination-directory: 'projects/my-project'
+      #     commit-email: 'lfeedwork05@gmail.com'
+
+  build_admin: 
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: front_admin
+
     steps:
       - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.13.15 # This is the action
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
         with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "portfolio-v2-02588722-7584-4e1" #Must be unique in Heroku
-          heroku_email: "lfeedwork05@gmail.com"
-          appdir: "server"
+          node-version: '20.x'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build front_admin
+        run: npm run build
+
+      - name: Push admin build folder to a deploy repository
+          uses: nkoppel/push-files-to-another-repository@v1.1.3
+          env:
+            API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+          with:
+            source-files: 'build/'
+            destination-username: 'Loner1feed'
+            destination-repository: 'https://github.com/Loner1feed/portfolio-v2-admin-deploy.git'
+            # destination-directory: 'projects/my-project'
+            commit-email: 'lfeedwork05@gmail.com'
