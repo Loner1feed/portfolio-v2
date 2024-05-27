@@ -57,5 +57,5 @@ jobs:
         with:
           source_folder: "front_admin"
           user_name: "Loner1feed"
-          destination_repo: "portfolio-v2-admin-deploy"
+          destination_repo: "Loner1feed/portfolio-v2-admin-deploy"
           user_email: "lfeedwork05@gmail.com"
