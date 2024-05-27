@@ -9,47 +9,47 @@ permissions:
   contents: write
 
 jobs:
-  # build_server:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: akhileshns/heroku-deploy@v3.13.15 # This is the action
-  #       with:
-  #         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-  #         heroku_app_name: "portfolio-v2-02588722-7584-4e1" #Must be unique in Heroku
-  #         heroku_email: "lfeedwork05@gmail.com"
-  #         appdir: "server"
+  build_server:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: akhileshns/heroku-deploy@v3.13.15 # This is the action
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "portfolio-v2-02588722-7584-4e1" #Must be unique in Heroku
+          heroku_email: "lfeedwork05@gmail.com"
+          appdir: "server"
 
-  # build_admin:
-  #   runs-on: ubuntu-latest
-  #   defaults:
-  #     run:
-  #       working-directory: ./front_admin
+  build_admin:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./front_admin
 
-  #   steps:
-  #     - uses: actions/checkout@v2
+    steps:
+      - uses: actions/checkout@v2
 
-  #     - name: Use Node.js
-  #       uses: actions/setup-node@v4
-  #       with:
-  #         node-version: "20.x"
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20.x"
 
-  #     - name: Install dependencies
-  #       run: npm install
+      - name: Install dependencies
+        run: npm install
 
-  #     - name: Build front_admin
-  #       run: npm run build
+      - name: Build front_admin
+        run: npm run build
 
-  #     - name: Push admin build folder to a deploy repository
-  #       uses: datalbry/copy_folder_to_another_repo_action@1.0.0
-  #       env:
-  #         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-  #       with:
-  #         source_folder: "front_admin/build"
-  #         user_name: "Loner1feed"
-  #         destination_repo: "Loner1feed/portfolio-v2-admin-deploy"
-  #         user_email: "lfeedwork05@gmail.com"
-  #         destination_folder: build
+      - name: Push admin build folder to a deploy repository
+        uses: datalbry/copy_folder_to_another_repo_action@1.0.0
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+        with:
+          source_folder: "front_admin/build"
+          user_name: "Loner1feed"
+          destination_repo: "Loner1feed/portfolio-v2-admin-deploy"
+          user_email: "lfeedwork05@gmail.com"
+          destination_folder: build
 
   build_front:
     runs-on: ubuntu-latest
