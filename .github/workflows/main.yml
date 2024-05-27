@@ -17,46 +17,50 @@ jobs:
   #         heroku_email: "lfeedwork05@gmail.com"
   #         appdir: "server"
 
-  # - name: Build front and front_admin
+  # build_admin:
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       working-directory: ./front_admin
 
-  # - name: Push admin page to deploy repository
-  #   uses: nkoppel/push-files-to-another-repository@v1.1.3
-  #   env:
-  #     API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-  #   with:
-  #     source-files: 'webpage/'
-  #     destination-username: 'Loner1feed'
-  #     destination-repository: 'https://github.com/Loner1feed/portfolio-v2-admin-deploy.git'
-  #     # destination-directory: 'projects/my-project'
-  #     commit-email: 'lfeedwork05@gmail.com'
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-  build_admin:
+  #     - name: Use Node.js
+  #       uses: actions/setup-node@v4
+  #       with:
+  #         node-version: "20.x"
+
+  #     - name: Install dependencies
+  #       run: npm install
+
+  #     - name: Build front_admin
+  #       run: npm run build
+
+  #     - name: Push admin build folder to a deploy repository
+  #       uses: datalbry/copy_folder_to_another_repo_action@1.0.0
+  #       env:
+  #         API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
+  #       with:
+  #         source_folder: "front_admin/build"
+  #         user_name: "Loner1feed"
+  #         destination_repo: "Loner1feed/portfolio-v2-admin-deploy"
+  #         user_email: "lfeedwork05@gmail.com"
+  #         destination_folder: build
+
+  build_front: 
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./front_admin
+        working-directory: ./front
 
     steps:
-      - uses: actions/checkout@v2
+      uses: actions/checkout@v2
 
       - name: Use Node.js
         uses: actions/setup-node@v4
-        with:
-          node-version: "20.x"
+          with:
+            node-version: "20.x"
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build front_admin
-        run: npm run build
-
-      - name: Push admin build folder to a deploy repository
-        uses: datalbry/copy_folder_to_another_repo_action@1.0.0
-        env:
-          API_TOKEN_GITHUB: ${{ secrets.API_TOKEN_GITHUB }}
-        with:
-          source_folder: "front_admin/build"
-          user_name: "Loner1feed"
-          destination_repo: "Loner1feed/portfolio-v2-admin-deploy"
-          user_email: "lfeedwork05@gmail.com"
-          destination_folder: build
+      - name: Publish build directory to a gh-pages branch and publish it on github pages
+        run: npm run deploy
