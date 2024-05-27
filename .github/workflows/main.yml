@@ -62,5 +62,8 @@ jobs:
         with:
           node-version: "20.x"
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Publish build directory to a gh-pages branch and publish it on github pages
         run: npm run deploy
