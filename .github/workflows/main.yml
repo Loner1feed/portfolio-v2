@@ -5,6 +5,9 @@ on:
     branches:
       - master
 
+permissions:
+  contents: write
+
 jobs:
   # build_server:
   #   runs-on: ubuntu-latest
@@ -64,6 +67,9 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+
+      - name: Build Front
+        run: npm run build
 
       - name: Publish build directory to a gh-pages branch and publish it on github pages
         uses: JamesIves/github-pages-deploy-action@v4
