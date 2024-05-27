@@ -34,7 +34,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: front_admin
+        working-directory: ./front_admin
 
     steps:
       - uses: actions/checkout@v2
