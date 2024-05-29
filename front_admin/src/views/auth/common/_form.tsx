@@ -61,7 +61,10 @@ export const AuthForm = () => {
         <Form.Item<FieldType>
           label="Password"
           name="password"
-          rules={[{ required: true, message: "Password is required" }]}
+          rules={[
+            { required: true, message: "Password is required" },
+            { min: 6, message: "Min. length for a password: 6 characters" },
+          ]}
         >
           <Input.Password />
         </Form.Item>
