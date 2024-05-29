@@ -1,16 +1,27 @@
-import IntlMessage from "../util/intl-message";
+import { Header } from "antd/es/layout/layout";
+import { Button } from "antd";
+import { LogoutOutlined } from "@ant-design/icons";
 
-interface PageHeaderProps {
-  title?: string;
-  display?: boolean;
-}
+export const PageHeader: React.FC = () => {
+  const logoutHandler = () => {
+    window.localStorage.removeItem("token");
+    window.location.hash = "/auth";
+  };
 
-export const PageHeader: React.FC<PageHeaderProps> = ({ title, display }) => {
-  return display ? (
-    <div className="app-page-header">
-      <h3 className="mb-0 mr-3 font-weight-semibold">
-        <IntlMessage id={title ? title : "home"} />
-      </h3>
-    </div>
-  ) : null;
+  return (
+    <Header
+      style={{
+        padding: 0,
+        paddingRight: "20px",
+        background: "#fff",
+        display: "flex",
+        justifyContent: "flex-end",
+        alignItems: "center",
+      }}
+    >
+      <Button size="large" icon={<LogoutOutlined />} onClick={logoutHandler}>
+        Log Out
+      </Button>
+    </Header>
+  );
 };
