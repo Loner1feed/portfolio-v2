@@ -60,7 +60,7 @@ export const ItemsEdit = () => {
           }
         })
         .catch((e: AxiosError) => {
-          message.error("Server error occured");
+          message.error(e.message);
         })
         .finally(() => {
           setLoading(false);

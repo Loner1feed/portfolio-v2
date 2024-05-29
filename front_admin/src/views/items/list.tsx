@@ -41,11 +41,12 @@ export const ItemsList = () => {
     setLoading(true);
     ItemsService.deleteItem(id)
       .then((res: AxiosResponse) => {
+        console.log(res);
         message.success("Item successfully deleted");
         refreshHandler();
       })
       .catch((e: AxiosError) => {
-        message.error("Server error occured");
+        message.error(e.message);
       })
       .finally(() => {
         setLoading(false);

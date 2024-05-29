@@ -55,7 +55,7 @@ export const useTable = <T extends UseTableParams>({
         }
       })
       .catch((e: AxiosError) => {
-        message.error("Server error occured");
+        message.error(e.message);
       })
       .finally(() => {
         setLoading(false);

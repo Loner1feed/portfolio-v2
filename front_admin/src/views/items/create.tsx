@@ -46,7 +46,7 @@ export const ItemsCreate = () => {
         }
       })
       .catch((e: AxiosError) => {
-        message.error("Server error occured");
+        message.error(e.message);
       })
       .finally(() => {
         setLoading(false);

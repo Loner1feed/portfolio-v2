@@ -13,7 +13,8 @@ export const MenuContent: React.FC = () => {
         setCurrent(location.pathname);
       }
     }
-  }, [location, current]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [location]);
 
   return (
     <Menu
