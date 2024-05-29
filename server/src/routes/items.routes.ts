@@ -29,7 +29,11 @@ router.get("/", getItemsController);
 router.post("/", validateParams, getItemsWithParamsController);
 
 // get items by params and page (for admin)
-router.post("/full", validateParams, getFullItemsWithParamsController);
+router.post(
+  "/full",
+  [checkAuth, validateParams],
+  getFullItemsWithParamsController
+);
 
 // delete item by id
 router.delete("/:id/", checkAuth, deleteItemByIdController);

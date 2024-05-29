@@ -22,12 +22,8 @@ export const checkAuth = async (
       else next();
     } catch (error) {
       // @ts-ignore
-      if (error.message === "jwt expired") {
-        res.status(401).send("Session expired");
-      } else {
-        res.status(500).send("Server error");
-        errorHandler(error);
-      }
+      res.status(401).send("Access denied");
+      errorHandler(error);
     }
   }
 };
