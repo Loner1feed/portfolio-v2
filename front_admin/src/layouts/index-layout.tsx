@@ -10,10 +10,9 @@ export const IndexLayout = () => {
     const token = localStorage.getItem("token");
     if (token && !pathname.includes("main")) {
       navigate("/main");
-    } else if (!token && pathname.includes("main")) {
+    } else if (!token && !pathname.includes("auth")) {
       navigate("/auth");
-    } else if (token && pathname === "/") navigate("/main");
-    else navigate("/auth");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
