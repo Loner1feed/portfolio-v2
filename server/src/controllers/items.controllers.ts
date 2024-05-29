@@ -47,7 +47,7 @@ export const deleteItemByIdController = async (
     if (isDeleted) res.status(200).send(`Deleted item with id: ${id}`);
     else res.status(404).send(`Can not find and delete item with id: ${id}`);
   } catch (error) {
-    res.status(500);
+    res.status(500).send("Server error");
     errorHandler(error);
   }
 };
