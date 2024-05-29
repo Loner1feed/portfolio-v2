@@ -21,7 +21,7 @@ export const loginController = async (req: Request, res: Response) => {
           },
           // @ts-ignore
           process.env.JWT_SECRET,
-          { expiresIn: 6 }
+          { expiresIn: 60 * 60 * 2 }
         );
         res.status(201).send({ token, expiresIn: 60 });
       }
