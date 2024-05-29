@@ -19,7 +19,7 @@ $api.interceptors.response.use(
     if (error.response) {
       if (error.response.status === 401) {
         const { localStorage, location } = window;
-        location.pathname = "/auth";
+        location.hash = "/auth";
         localStorage.removeItem("token");
         return Promise.reject({
           ...error,

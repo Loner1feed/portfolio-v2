@@ -4,8 +4,8 @@ import { MainLayout } from "../../../layouts/main-layout";
 import itemsRoutes from "../../../views/items";
 import {
   RouterProvider,
-  createBrowserRouter,
-  // createHashRouter,
+  // createBrowserRouter,
+  createHashRouter,
 } from "react-router-dom";
 import blankRoute from "../../../views/blank";
 import mainImageRoute from "../../../views/main-image";
@@ -15,7 +15,7 @@ import authRoute from "../../../views/auth";
 
 // TODO: сделать lazy load компонентов из роутов
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
     path: "/",
     element: <IndexLayout />,
