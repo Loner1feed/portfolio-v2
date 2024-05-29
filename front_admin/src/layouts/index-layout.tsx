@@ -12,7 +12,8 @@ export const IndexLayout = () => {
       navigate("/main");
     } else if (!token && pathname.includes("main")) {
       navigate("/auth");
-    }
+    } else if (token && pathname === "/") navigate("/main");
+    else navigate("/auth");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
