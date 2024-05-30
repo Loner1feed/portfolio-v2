@@ -35,10 +35,11 @@ export const ItemsEdit = () => {
     const data = new FormData();
 
     if (values) {
+      //@ts-ignore
       Object.keys(values).map((val) => {
         if (val !== "isSimple") {
           //@ts-ignore
-          data.append(val, JSON.stringify(values[val]));
+          data.append(val, JSON.stringify(values[val] || ""));
         }
         return null;
       });
