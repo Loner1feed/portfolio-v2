@@ -57,11 +57,7 @@ export const ItemsForm: React.FC<ItemsFormProps> = ({
         <Input />
       </Form.Item>
 
-      <Form.Item<FieldType>
-        label="Repo URL"
-        name="repoUrl"
-        rules={[{ required: true, message: "Repo URL is required" }]}
-      >
+      <Form.Item<FieldType> label="Repo URL" name="repoUrl">
         <Input />
       </Form.Item>
 
