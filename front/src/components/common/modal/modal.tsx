@@ -69,7 +69,11 @@ export const Modal: React.FC<ModalProps> = ({ open, handleClose, data }) => {
               </ModalInfoBlock>
               <ModalInfoBlock heading="description">
                 <CustomScroll>
-                  <p>{data?.description}</p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: data?.description as string,
+                    }}
+                  ></p>
                 </CustomScroll>
               </ModalInfoBlock>
 
