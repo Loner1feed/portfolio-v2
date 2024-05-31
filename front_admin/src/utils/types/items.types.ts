@@ -6,6 +6,7 @@ export interface Item extends ShortItem {
   repoUrl: string;
   stack: string[];
   imagePublicId?: string;
+  isSimple: boolean;
 }
 
 export interface ShortItem {

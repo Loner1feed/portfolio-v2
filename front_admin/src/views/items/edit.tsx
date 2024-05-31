@@ -25,6 +25,7 @@ export const ItemsEdit = () => {
       websiteUrl: data.websiteUrl,
       repoUrl: data.repoUrl,
       stack: data.stack,
+      isSimple: data.isSimple,
     });
 
     setImagePreview(data.imageUrl);
