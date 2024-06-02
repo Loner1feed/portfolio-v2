@@ -21,7 +21,7 @@ export const RombicButton: React.FC<RombicButtonProps> = ({
       {iconComponent}
     </button>
   ) : (
-    <a className={`rombBtn ${className}`} href={href}>
+    <a className={`rombBtn ${className}`} href={href} target="_blank">
       {iconComponent}
     </a>
   );

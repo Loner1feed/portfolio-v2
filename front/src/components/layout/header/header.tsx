@@ -9,6 +9,8 @@ import './header.style.scss';
 // icons
 import { GithubIcon, LinkedinIcon, TelegramIcon } from 'components/icons';
 
+//TODO: remove this stupid ass hardcode and make social buttons filled dynamically from server
+
 export const Header: React.FC = () => {
   return (
     <header className="header">
@@ -16,9 +18,18 @@ export const Header: React.FC = () => {
         <div className="header__inner">
           <Logo />
           <div className="header__socials">
-            <RombicButton iconComponent={<TelegramIcon />} />
-            <RombicButton iconComponent={<LinkedinIcon />} />
-            <RombicButton iconComponent={<GithubIcon />} />
+            <RombicButton
+              iconComponent={<TelegramIcon />}
+              href="https://t.me/fam_fam_fam_fam"
+            />
+            <RombicButton
+              iconComponent={<LinkedinIcon />}
+              href="https://www.linkedin.com/in/yevhenii-huriev-309035212/"
+            />
+            <RombicButton
+              iconComponent={<GithubIcon />}
+              href="https://github.com/Loner1feed"
+            />
           </div>
         </div>
       </Container>

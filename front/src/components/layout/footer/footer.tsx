@@ -6,6 +6,8 @@ import React from 'react';
 //styles
 import './footer.style.scss';
 
+// TODO: remove hardcode and display items dynamically from server
+
 export const Footer: React.FC = () => {
   return (
     <footer className="footer">
@@ -14,7 +16,7 @@ export const Footer: React.FC = () => {
         <InfoRow label="E-Mail">
           <a href="mailto:lfeedwork05@gmail.com">lfeedwork05@gmail.com</a>
         </InfoRow>
-        <InfoRow label="E-Mail">
+        <InfoRow label="Phone">
           <a href="#">+31630772800</a>
         </InfoRow>
       </Container>
