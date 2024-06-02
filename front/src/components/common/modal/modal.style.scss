@@ -221,6 +221,10 @@
       padding-top: 10px;
       max-height: 115px;
       padding-right: 5px;
+      p {
+        padding: 0;
+        min-height: unset;
+      }
     }
   }
 
