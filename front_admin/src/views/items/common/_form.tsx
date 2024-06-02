@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Form, FormProps, Image, Input, Select, Switch } from "antd";
 import Dragger from "antd/es/upload/Dragger";
 import { InboxOutlined } from "@ant-design/icons";
+import { HtmlEditor } from "../../../components/common/html-editor/html-editor";
 
 export type FieldType = {
   title?: string;
@@ -50,7 +51,8 @@ export const ItemsForm: React.FC<ItemsFormProps> = ({
         name="description"
         rules={[{ required: true, message: "Description is required" }]}
       >
-        <Input.TextArea />
+        {/* @ts-ignore */}
+        <HtmlEditor />
       </Form.Item>
 
       <Form.Item<FieldType> label="Website URL" name="websiteUrl">
