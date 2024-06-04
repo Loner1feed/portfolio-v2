@@ -3,6 +3,8 @@ import db from "../db/mongo.conn";
 import { uploadImage } from "./images.models";
 import { getImageForUpload } from "../utils/helpers/getImageForUpload";
 import { ITEMS_COLLECTION } from "../utils/constants/mongo-coll.constants";
+import { PaginationResponse, Params } from "../utils/types";
+import { getAggrPipeline } from "../utils/helpers/getAggrPipeline";
 
 // INTERFACES
 export interface Item extends ShortItem {
@@ -25,18 +27,7 @@ export interface ImageData {
   fileName: string;
 }
 
-export interface PaginationResponse {
-  page: number;
-  totalCount: number;
-  data: ShortItem[];
-}
-
-export interface Params {
-  page: number;
-  pageSize: number;
-  paramName: string;
-  paramValue: string | number | boolean;
-}
+export type ItemResponse = PaginationResponse<ShortItem>;
 // INTERFACES END
 
 // MODELS
@@ -110,30 +101,17 @@ export const updateItem = async (
 export const getItemsWithParams = async (
   params: Params,
   fullData: boolean = false
-): Promise<PaginationResponse> => {
-  const { page, pageSize, paramName, paramValue } = params;
+): Promise<ItemResponse> => {
+  const { page, paramName, paramValue } = params;
 
-  let aggregationPipeline;
-
-  if (paramName && paramValue !== null) {
-    aggregationPipeline = [
-      { $match: { [paramName]: paramValue } },
-      { $skip: page ? page * pageSize : 0 },
-      { $limit: pageSize },
-    ];
-  } else {
-    aggregationPipeline = [
-      { $skip: page ? page * pageSize : 0 },
-      { $limit: pageSize },
-    ];
-  }
+  const pipeline = getAggrPipeline(params);
 
   const countQuery =
     paramName && paramValue !== null ? { [paramName]: paramValue } : {};
 
   const coll = db.collection<Item>(ITEMS_COLLECTION);
 
-  const items = (await coll.aggregate(aggregationPipeline).toArray()) as Item[];
+  const items = (await coll.aggregate(pipeline).toArray()) as Item[];
 
   const finalizedItems = !fullData
     ? (items.map((el) => ({

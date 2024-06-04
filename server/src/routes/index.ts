@@ -2,6 +2,7 @@ import { Request, Response, Router } from "express";
 import itemsRouter from "./items.routes";
 import usersRouter from "./users.routes";
 import imagesRouter from "./images.routes";
+import socialsRouter from "./socials.routes";
 
 const router = Router();
 
@@ -14,5 +15,6 @@ router.get("/", (req: Request, res: Response) => {
 router.use("/items", itemsRouter);
 router.use("/auth", usersRouter);
 router.use("/image", imagesRouter);
+router.use("/socials", socialsRouter);
 
 export default router;

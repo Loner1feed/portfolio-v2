@@ -6,10 +6,10 @@ import {
   deleteItemById,
   createItem,
   updateItem,
-  Params,
   getItemsWithParams,
 } from "../models/items.models";
 import { errorHandler } from "../utils/helpers/errorHandler";
+import { Params } from "../utils/types";
 
 export const getItemsController = async (
   _req: Request,
@@ -108,7 +108,7 @@ export const getItemsWithParamsController = async (
     res.status(200).json(response);
   } catch (error) {
     errorHandler(error);
-    res.status(500);
+    res.status(500).send("Server error");
   }
 };
 
