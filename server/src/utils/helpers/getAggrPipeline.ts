@@ -10,6 +10,7 @@ export const getAggrPipeline = (params: Params) => {
 
   aggregationPipeline.push(
     { $skip: page ? page * pageSize : 0 },
+    { $sort: { createdDate: 1 } },
     { $limit: pageSize }
   );
 
