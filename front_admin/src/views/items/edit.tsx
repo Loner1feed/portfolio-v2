@@ -6,6 +6,7 @@ import { Card, message, FormProps } from "antd";
 import { Item } from "../../utils/types/items.types";
 import { FieldType, ItemsForm } from "./common/_form";
 import { useForm } from "antd/es/form/Form";
+import { omit } from "../../utils/helpers/omit";
 
 export const ItemsEdit = () => {
   // hooks
@@ -26,6 +27,7 @@ export const ItemsEdit = () => {
       repoUrl: data.repoUrl,
       stack: data.stack,
       isSimple: data.isSimple,
+      updateCreatedDate: false,
     });
 
     setImagePreview(data.imageUrl);
@@ -35,20 +37,15 @@ export const ItemsEdit = () => {
     // creating the FormData object
     const data = new FormData();
 
+    let omittedData;
     if (values) {
-      //@ts-ignore
-      Object.keys(values).map((val) => {
-        if (val !== "isSimple") {
-          //@ts-ignore
-          data.append(val, JSON.stringify(values[val] || ""));
-        }
-        return null;
-      });
+      const settings = { updateCreatedDate: !!values.updateCreatedDate };
+      data.append("settings", JSON.stringify(settings));
+
+      omittedData = omit(values, ["updateCreatedDate"]);
+      data.append("data", JSON.stringify(omittedData));
+      // logFormData(data);
     }
-
-    // @ts-ignore
-    data.append("isSimple", JSON.stringify(!!values.isSimple));
-
     if (file) data.append("image", file);
 
     // server request
@@ -103,6 +100,7 @@ export const ItemsEdit = () => {
         onFinish={handleFormFinish}
         handleFile={handleFile}
         imagePreview={imagePreview}
+        isEdit={true}
       />
     </Card>
   );

@@ -11,6 +11,7 @@ export type FieldType = {
   repoUrl?: string;
   stack?: string[];
   isSimple?: boolean;
+  updateCreatedDate: boolean;
 };
 
 interface ItemsFormProps {
@@ -19,6 +20,7 @@ interface ItemsFormProps {
   loading?: boolean;
   handleFile: (file: File | null) => void;
   imagePreview?: string;
+  isEdit?: boolean;
 }
 
 export const ItemsForm: React.FC<ItemsFormProps> = ({
@@ -27,6 +29,7 @@ export const ItemsForm: React.FC<ItemsFormProps> = ({
   loading = false,
   handleFile,
   imagePreview,
+  isEdit = false,
 }) => {
   // state
 
@@ -74,6 +77,15 @@ export const ItemsForm: React.FC<ItemsFormProps> = ({
       <Form.Item<FieldType> label="Not a React App" name="isSimple">
         <Switch />
       </Form.Item>
+
+      {isEdit && (
+        <Form.Item<FieldType>
+          label="Replace createdDate with current date"
+          name="updateCreatedDate"
+        >
+          <Switch />
+        </Form.Item>
+      )}
 
       {imagePreview && (
         <div

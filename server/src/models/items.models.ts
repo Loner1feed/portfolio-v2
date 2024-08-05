@@ -14,7 +14,7 @@ export interface Item extends ShortItem {
   stack: string[];
   isSimple: boolean;
   imagePublicId?: string;
-  createdDate: string;
+  createdDate?: string;
 }
 
 export interface ShortItem {
@@ -68,7 +68,10 @@ export const createItem = async (
       newData.imagePublicId = imagePublicId;
     }
   }
-  const result = await db.collection<Item>(ITEMS_COLLECTION).insertOne(newData);
+  // inserting our item to a database with it's creation date
+  const result = await db
+    .collection<Item>(ITEMS_COLLECTION)
+    .insertOne({ ...newData, createdDate: String(Date.now()) });
 
   return result;
 };
@@ -76,7 +79,8 @@ export const createItem = async (
 export const updateItem = async (
   id: string,
   data: Item,
-  file: Express.Multer.File
+  file: Express.Multer.File,
+  updateCreatedDate: boolean
 ): Promise<UpdateResult> => {
   const query = { _id: new ObjectId(id) };
 
@@ -91,10 +95,18 @@ export const updateItem = async (
     }
   }
 
+  // create our dataSet
+  // update data.createdDate if updateCreatedDate is true
+  const dataSet = {
+    $set: updateCreatedDate
+      ? { ...data, dateCreated: String(Date.now()) }
+      : data,
+  };
+
   // update item with data provided
   const result = await db
     .collection<Item>(ITEMS_COLLECTION)
-    .updateOne(query, { $set: data });
+    .updateOne(query, dataSet);
 
   return result;
 };

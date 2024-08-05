@@ -8,7 +8,10 @@ import {
   getItemsWithParamsController,
   updateItemController,
 } from "../controllers/items.controllers";
-import { validateItem } from "../utils/validations/items.validation";
+import {
+  validateEditItem,
+  validateItem,
+} from "../utils/validations/items.validation";
 import { validateParams } from "../utils/validations/params.validation";
 import { checkAuth } from "../utils/middlewares/auth";
 import multer, { memoryStorage } from "multer";
@@ -48,7 +51,7 @@ router.post(
 // update item by id
 router.put(
   "/:id/",
-  [checkAuth, upload.single("image"), validateItem],
+  [checkAuth, upload.single("image"), validateEditItem],
   updateItemController
 );
 

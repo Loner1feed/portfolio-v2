@@ -70,20 +70,25 @@ export const createItemController = async (
   }
 };
 
+// req.body = { data, settings }
+
 export const updateItemController = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   const id = req.params.id;
   const file = req.file as Express.Multer.File;
+  const { updateCreatedDate } = JSON.parse(req.body?.settings);
 
   // parse form data
-  const data = Object.keys(req.body).reduce((acc, el) => {
-    return { ...acc, [el]: JSON.parse(req.body[el]) };
-  }, {}) as Item;
+  // const data = Object.keys(req.body.data).reduce((acc, el) => {
+  //   return { ...acc, [el]: JSON.parse(req.body[el]) };
+  // }, {}) as Item;
+
+  const data = JSON.parse(req.body.data);
 
   try {
-    const response = await updateItem(id, data, file);
+    const response = await updateItem(id, data, file, updateCreatedDate);
 
     if (response.acknowledged)
       res.status(200).send("Item successfully updated!");

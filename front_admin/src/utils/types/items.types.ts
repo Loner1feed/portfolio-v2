@@ -7,6 +7,7 @@ export interface Item extends ShortItem {
   stack: string[];
   imagePublicId?: string;
   isSimple: boolean;
+  updateCreatedDate?: boolean;
 }
 
 export interface ShortItem {
