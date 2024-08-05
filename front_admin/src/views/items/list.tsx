@@ -93,13 +93,15 @@ export const ItemsList = () => {
       title: "Description",
       dataIndex: "description",
       key: "description",
+      width: 300,
+      ellipsis: true,
     },
 
     {
       title: "Stack",
       dataIndex: "stack",
       key: "stack",
-      width: 300,
+      width: 250,
       render: (record: string[]) => (
         <Space wrap style={{ columnGap: "0" }}>
           {record.map((el) => (
@@ -146,6 +148,7 @@ export const ItemsList = () => {
         dataSource={response.data}
         loading={loading}
         onChange={tableChangeHandler}
+        scroll={{ x: 400 }}
         pagination={{
           showSizeChanger: false,
           total: response.totalCount,
