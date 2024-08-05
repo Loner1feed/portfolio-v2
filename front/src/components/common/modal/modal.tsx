@@ -12,6 +12,7 @@ import { CloseIcon, OpenIcon } from 'components/icons';
 //styles
 import './modal.style.scss';
 import { CustomScroll } from 'react-custom-scroll';
+import { useFixedScroll } from 'utils/hooks/use-fixed-scroll';
 
 interface ModalProps {
   open: boolean;
@@ -20,8 +21,12 @@ interface ModalProps {
 }
 
 export const Modal: React.FC<ModalProps> = ({ open, handleClose, data }) => {
+  // refs
   const backdropRef = useRef(null);
   const modalRef = useRef(null);
+
+  // custom hooks
+  const { fixScroll, releaseScroll } = useFixedScroll();
 
   // close modal with escape key
   useEffect(() => {
@@ -32,6 +37,12 @@ export const Modal: React.FC<ModalProps> = ({ open, handleClose, data }) => {
       document.body.removeEventListener('keydown', closeOnEscapeKey);
     };
   }, [handleClose]);
+
+  // lock the body scroll on modal open (and vise versa)
+  useEffect(() => {
+    if (open) fixScroll();
+    else releaseScroll();
+  }, [open]);
 
   return (
     <ReactPortal wrapperId="portal-modal-wrapper">

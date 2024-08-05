@@ -22,6 +22,7 @@ export const ItemCard: React.FC<ItemCardProps> = ({ title, imageUrl, id }) => {
 
   const [loading, setLoading] = useState(false);
 
+  // custom hooks
   const { setIsModalOpen, setModalData } = useModal();
 
   // get full item data and trigger modal
