@@ -17,7 +17,7 @@ export const RombicButton: React.FC<RombicButtonProps> = ({
   className,
 }) => {
   return !href ? (
-    <button className={`rombBtn ${className}`} onClick={onClick}>
+    <button className={`rombBtn ${className || ''}`} onClick={onClick}>
       {iconComponent}
     </button>
   ) : (

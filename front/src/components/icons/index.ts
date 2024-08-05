@@ -5,3 +5,4 @@ export { default as TelegramIcon } from './telegram-icon';
 export { default as OpenIcon } from './open-icon';
 export { default as ChevronLeft } from './chevron-left';
 export { default as ChevronRight } from './chevron-right';
+export { default as UpworkIcon } from './upwork-icon';

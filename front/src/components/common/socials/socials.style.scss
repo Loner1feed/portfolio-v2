@@ -1,0 +1,43 @@
+@import '../../../assets/styles/vars.scss';
+
+.socials {
+  & > div {
+    display: grid;
+    grid-template-columns: repeat(var(--socialsCount), 1fr);
+    justify-content: center;
+    grid-gap: 30px;
+    @media (max-width: 720px) {
+      grid-gap: 10px;
+      .rombBtn {
+        &::before {
+          background: #fff;
+        }
+
+        svg path {
+          fill: $primary;
+        }
+      }
+    }
+  }
+
+  &-enter {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  &-enter-active {
+    opacity: 1;
+    transition: 300ms ease;
+    transform: translateY(0px);
+  }
+  &-exit {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  &-exit-active {
+    opacity: 0.01;
+    transition: 300ms ease;
+    transform: translateY(-10px);
+  }
+}
