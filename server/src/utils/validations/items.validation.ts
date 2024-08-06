@@ -7,6 +7,7 @@ export const itemSchema = Joi.object({
   websiteUrl: Joi.string().allow(""),
   repoUrl: Joi.string().allow(""),
   stack: Joi.array().items(Joi.string()).required(),
+  // stack: Joi.string().required(),
   isSimple: Joi.boolean().required(),
   imagePublicId: Joi.string(),
   imageUrl: Joi.string(),
@@ -17,7 +18,7 @@ export const validateItem = (
   res: Response,
   next: NextFunction
 ) => {
-  const result: ValidationResult = itemSchema.validate(req.body, {
+  const result: ValidationResult = itemSchema.validate(JSON.parse(req.body), {
     abortEarly: true,
   });
 
