@@ -3,6 +3,7 @@ import itemsRouter from "./items.routes";
 import usersRouter from "./users.routes";
 import imagesRouter from "./images.routes";
 import socialsRouter from "./socials.routes";
+import contactsRouter from "./contacts.routes";
 
 const router = Router();
 
@@ -16,5 +17,6 @@ router.use("/items", itemsRouter);
 router.use("/auth", usersRouter);
 router.use("/image", imagesRouter);
 router.use("/socials", socialsRouter);
+router.use("/contacts", contactsRouter);
 
 export default router;
