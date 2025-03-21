@@ -27,7 +27,6 @@ export const Socials: React.FC = () => {
   useEffect(() => {
     SocialsService.getAll()
       .then(res => {
-        console.log(res.data);
         setData(res.data);
         document.documentElement.style.setProperty(
           '--socialsCount',
