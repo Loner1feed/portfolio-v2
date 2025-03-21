@@ -12,12 +12,9 @@ export const validateContact = (
   res: Response,
   next: NextFunction
 ) => {
-  const result: ValidationResult = contactSchema.validate(
-    JSON.parse(req.body),
-    {
-      abortEarly: true,
-    }
-  );
+  const result: ValidationResult = contactSchema.validate(req.body, {
+    abortEarly: true,
+  });
 
   if (result.error)
     res.status(400).json(result.error.details.map((err) => err.message));
