@@ -10,17 +10,22 @@ permissions:
 
 jobs:
   build_server:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v3
 
-      - name: Deploy to Heroku
-        uses: akhileshns/heroku-deploy@v3.13.15
-        with:
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: "portfolio-v2-02588722-7584-4e1"
-          heroku_email: "lfeedwork05@gmail.com"
-          appdir: "server" # <- должно быть корректным путем к backend
+    - name: Install Heroku CLI
+      run: |
+        curl https://cli-assets.heroku.com/install.sh | sh
+        export PATH="/usr/local/bin:$PATH"
+
+    - name: Deploy to Heroku
+      uses: akhileshns/heroku-deploy@v3.13.15
+      with:
+        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+        heroku_app_name: "portfolio-v2-02588722-7584-4e1"
+        heroku_email: "lfeedwork05@gmail.com"
+        appdir: "server"
 
   build_admin:
     runs-on: ubuntu-latest
