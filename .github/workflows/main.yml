@@ -14,7 +14,7 @@ jobs:
   steps:
     - uses: actions/checkout@v3
 
-    - name: Install Heroku CLI
+    - name: Installl Heroku CLI
       run: |
         curl https://cli-assets.heroku.com/install.sh | sh
         export PATH="/usr/local/bin:$PATH"
